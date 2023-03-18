@@ -93,46 +93,46 @@ class AdminController extends Controller{
         $FCE=session('FCE');
 
         //validacion de pesos
+        //suman el total de pesos de cada FI
         $contador=0;
         $val=[];
-
-
-        //se inicializa el vector suma
-        for ($k = 0; $k < ($num_FCE); $k++) $val[$k]=0;
-
-        //suman el total de pesos de cada FI
-//        dd($FI_peso);
-//        for ($k = 0; $k < count($num_FIs); $k++) {
-//            for ($j = 0; $j < $num_FIs[$k]; $j++) {
-//                $val[$k]+=
-//                    $FI_peso[$contador];
-//                $contador++;
-//            }
-//        }
+        for ($k = 0; $k < ($num_FCE); $k++){
+            $val[$k]=0;
+        }
         $debe_ser_cien=array_sum($FI_peso);
 
-//        foreach ($val as $v){
-//            if ($v!==100)
-//                $debe_ser_cien=false;
-//        }
+        //no puede haber pesos de 100
+        if(count($FI_peso) > 1){
+            foreach ($FI_peso as $key => $value) {
+                if($value > 100)
+                    $estaMalo=true;
+            }
+        }
+            
 
-        if ($debe_ser_cien==100) {
-            return view('/admin.Nuevos_items.Agregar_preguntas')->with([
-                'FI_nombre' => $FI_nombre,
-                'FI_peso' => $FI_peso,
-                'num_preguntas' => $num_preguntas,
+        if ($debe_ser_cien == 100) {
+            if ($estaMalo) {
+                return view('/admin.Nuevos_items.Agregar_FIs2')->with([
+                    'FCE'=>$FCE,
+                    'num_FI'=>$num_FIs,
+                    'message2'=>"Los pesos de las Factores Internos deben ser menores a 100"
+                ]);
+            } else {
+                return view('/admin.Nuevos_items.Agregar_preguntas')->with([
+                    'FI_nombre' => $FI_nombre,
+                    'FI_peso' => $FI_peso,
+                    'num_preguntas' => $num_preguntas,
 
-                'num_FCE' => $num_FCE,
-                'num_FI' => $num_FIs,
-                'FCE' => $FCE,
-            ]);
+                    'num_FCE' => $num_FCE,
+                    'num_FI' => $num_FIs,
+                    'FCE' => $FCE,
+                ]);
+            }
         }else{
-
             return view('/admin.Nuevos_items.Agregar_FIs2')->with([
                 'FCE'=>$FCE,
                 'num_FI'=>$num_FIs,
                 'message2'=>"Los pesos de las Factores Internos deben sumar 100"
-
             ]);
         }
     }
@@ -156,7 +156,7 @@ class AdminController extends Controller{
         $contador_fi=0; //mismo caso para vector de los FI
         $valorescien=[];
 
-//        valores del request
+        //    valores del request
         $nombresin=$request->nombre;
         $pesosin=$request->peso;
         //(1)primero validamos
@@ -176,8 +176,8 @@ class AdminController extends Controller{
             }
         }
         $val2=true;
+        
         //Con un solo valor que sea distinto de cien, no se ingresan datos
-//        dd($valorescien,$num_FI);
         $contador_error=0;
         foreach ($valorescien as $debe_ser_cien){
             $contador_error++;
@@ -199,7 +199,6 @@ class AdminController extends Controller{
                     'se_id' => $sectorE->id,
                 ]);
 
-//            dd($FI_peso);
                 for ($j = 0; $j < $num_FI[$k]; $j++) {
                     $FACINT = FactorInterno::create([
                         'nombre' => $FI_nombre[$contador_fi],
@@ -220,11 +219,7 @@ class AdminController extends Controller{
                     $contador_fi++;
                 }
             }
-
-            return view('home')
-                ->with([
-                    'saludo' => "Buenas"
-                ]);
+            return view('home')->with(['saludo' => "Cordial saludo"]);
         }
         else{
             return view('/admin.Nuevos_items.Agregar_preguntas')->with([

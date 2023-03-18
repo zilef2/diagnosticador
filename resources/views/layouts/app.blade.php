@@ -23,7 +23,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <img src="{{ url('/images/logito.png') }}" height="60px" alt="no Icono">
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand ml-2" href="{{ url('/home') }}">
                     {{ config('app.name', 'Nombre_app') }}
                 </a>
 
@@ -44,11 +44,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-{{--                            @if (Route::has('register'))--}}
-{{--                                <li class="nav-item">--}}
-{{--                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>--}}
-{{--                                </li>--}}
-{{--                            @endif--}}
                         @else
                             @include('navigations.'. \App\User::navigation())
                         @endguest
@@ -61,8 +56,35 @@
             @yield('content')
         </main>
     </div>
+    @yield('head_scripts')
 
     @livewireScripts
+
+    <script>
+        let inputElements = document.getElementsByName('FI_peso');
+        let resultado = document.getElementById('resultado');
+
+        console.log("🚀🧈 -----------------------------------------------------🚀🧈");
+        console.log("🚀🧈 debuging inputElements:", inputElements);
+        console.log("🚀🧈 -----------------------------------------------------🚀🧈");
+        // if(inputElements.length != 0) {
+            inputElements.forEach(element => {
+                element.addEventListener('click', ()=> {
+                    var total = 0;
+                        console.log("element:", element);
+                        inputElements.forEach(sumando => {
+                            if(!isNaN(sumando.value)) total += parseFloat(sumando.value);
+                        });
+                        resultado.textContent = total;
+                    })
+               
+            });
+            resultado.value = 'no hay valores';
+        // }
+    </script>
+
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

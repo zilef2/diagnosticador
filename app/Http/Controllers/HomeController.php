@@ -33,12 +33,12 @@ class HomeController extends Controller
     public function index(){
         $users=User::all();
         $preguntas=Preguntas::all()->where('sector_economico_id',Auth::user()->sector_id)
-            ->sortBy('factor_interno_id');
+            ->sortBy('updated_at');
         foreach ($preguntas->toArray() as $pre){
             $vec[]=$pre['factor_interno_id'];
         }
-//
-//        //en $vec se almacena el rango de factores internos a los que pertenece el usuario
+  
+        //en $vec se almacena el rango de factores internos a los que pertenece el usuario
         $FI_max=max($vec);
         $FI_min=min($vec);
         $FI=FactorInterno::all()->whereBetween('id',[$FI_min,$FI_max]);
@@ -64,18 +64,12 @@ class HomeController extends Controller
                 $saludo="Buenas tardes";
             }
         }
-//        dd($date);
-
 
         return view('home')->with('users', $users)
             ->with('preguntas', $preguntas)
             ->with('FCE', $FCE)
-//            ->with('max', $max)
             ->with('FI', $FI)
-            ->with('saludo', $saludo)
-//            ->with('date', $date)
-//            ->with('datePM', $datePM)
-        ;
+            ->with('saludo', $saludo);
 
     }
 

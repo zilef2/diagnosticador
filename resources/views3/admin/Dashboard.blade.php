@@ -70,3 +70,5 @@
         <p class="m-0 text-center text-white">Copyright &copy; Diagnosticador Empresarial 2020</p>
     </div>
 </footer>
+
+

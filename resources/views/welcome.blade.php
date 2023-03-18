@@ -100,10 +100,6 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-
-{{--                        @if (Route::has('register'))--}}
-{{--                            <a href="{{ route('register') }}">Register</a>--}}
-{{--                        @endif--}}
                     @endauth
                 </div>
             @endif
@@ -112,12 +108,12 @@
                 <div class="title m-b-md">
                     {{ config('app.name', 'Laravel') }}
                     <br>
-                    <small>Phd Jorge Anibal Restrepo Morales</small>
+                    {{-- <small class="text-xl">Phd Jorge Anibal Restrepo Morales</small> --}}
                 </div>
 
                 <div class="links">
                     <a href="https://www.consult-ing.com.co/">Consult-ING</a>
-                </div>
+                </div><br>
             </div>
         </div>
 
