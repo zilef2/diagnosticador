@@ -13,8 +13,11 @@
             <label for="FCE">Digite el numero de Sub-Factores que tendrá dicho Factor</label>
             <input type="number" name="num_FI[]" placeholder="#" max=40 class="form-control mb-2 col-md-2" required/>
         @endfor
-        <button class="btn btn-success btn-block" type="submit">Siguiente</button>
+        <div class="d-flex justify-content-center">
+            <a type="button" href="{{ route('home') }}" class="btn btn-secondary mx-2 shadow-lg hover:shadow-xl">Ir al inicio</a>
+            <button type="submit" class="btn btn-primary mx-2 shadow-lg hover:shadow-xl">Siguiente</button>
+        </div>
     </form>
-    <a class="btn btn-dark btn-block" href="{{ route('home') }}">Volver</a>
+    {{-- <a class="btn btn-dark btn-block" href="{{ route('home') }}">Volver</a> --}}
     </div></div></div>
 @endsection

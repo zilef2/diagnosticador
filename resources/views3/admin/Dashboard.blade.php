@@ -1,7 +1,7 @@
 <div class="container">
     <!-- Jumbotron Header -->
     <h2 class="display-2">{{config('app.name', 'Laravel')}}</h2>
-    <h5 class="display-4">Phd Jorge Anibal Restrepo Morales</h5>
+    {{-- <h5 class="display-4">Phd Jorge Anibal Restrepo Morales</h5> --}}
 
     <div class="row text-center">
 
@@ -52,11 +52,7 @@
                     <p class="card-text">Descarga la base de datos tal cual y como esta a la fecha</p>
                 </div>
                 <div class="card-footer">
-{{--                    <a href="{{ route('export1') }}" class="btn btn-primary" disabled="disabled">Descargar Reporte</a>--}}
-{{--                    <hr>--}}
                     <a href= "{{ route('export2') }}" class="btn btn-primary">Descargar Base de Datos</a>
-{{--                    <hr>--}}
-
                 </div>
             </div>
         </div>

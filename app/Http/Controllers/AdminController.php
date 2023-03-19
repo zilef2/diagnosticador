@@ -102,6 +102,7 @@ class AdminController extends Controller{
         $debe_ser_cien=array_sum($FI_peso);
 
         //no puede haber pesos de 100
+        $estaMalo = false;
         if(count($FI_peso) > 1){
             foreach ($FI_peso as $key => $value) {
                 if($value > 100)
@@ -138,9 +139,6 @@ class AdminController extends Controller{
     }
 
     public function Agregar_preguntaf(Validacion_pesos $request){
-//        $validated = $request->validated();
-
-
         $num_FIs=session('num_FI');
         $SE=session('SE');
 
@@ -175,21 +173,21 @@ class AdminController extends Controller{
                 $contador_fi++;
             }
         }
+        // dd($valorescien);
         $val2=true;
         
         //Con un solo valor que sea distinto de cien, no se ingresan datos
         $contador_error=0;
-        foreach ($valorescien as $debe_ser_cien){
+        $debe_ser_cien = 0;
+        foreach ($valorescien as $vals){
             $contador_error++;
-            if ($debe_ser_cien!=100){
-                $val2=false;
-                break;
-            }
+            $debe_ser_cien += intval($vals);
         }
+        $val2 = $debe_ser_cien == 100;
         $contador_preg=0;
         $contador_fi=0;
-        //(1)luego insertamos en la DB
 
+        //(1)luego insertamos en la DB
         if ($val2){
 
             $sectorE = Sector_economico::create(['nombre' => $SE]);
@@ -219,9 +217,8 @@ class AdminController extends Controller{
                     $contador_fi++;
                 }
             }
-            return view('home')->with(['saludo' => "Cordial saludo"]);
-        }
-        else{
+            return view('home')->with(['message' => "Variables agregadas correctamente"]);
+        } else{
             return view('/admin.Nuevos_items.Agregar_preguntas')->with([
                 'FI_nombre'=>$FI_nombre,
                 'FI_peso'=>$FI_peso,
@@ -230,24 +227,21 @@ class AdminController extends Controller{
                 'num_FCE'=>$num_FCE,
                 'num_FI'=>$num_FIs,
                 'FCE'=>$FCE,
-                'message2'=>"Los pesos de las preguntas deben sumar 100\nRevise el Factor externo #".$contador_error
+                'message2'=>"Los pesos de las preguntas deben sumar 100. Por favor, revise el Factor externo #".$contador_error
             ]);
         }
     }
 
 
-
-
-
-public function Listar_preguntas(){return view('/admin.listar.Listar_preguntas');}
+    public function Listar_preguntas(){return view('/admin.listar.Listar_preguntas');}
 
     public function export(){
         Excel::store(new CalificacionesExport, 'users.xlsx','public');
-//        Excel::store(new CalificacionesExport, 'users.csv','public');
+    //    Excel::store(new CalificacionesExport, 'users.csv','public');
         return Excel::download(new CalificacionesExport, 'Reporte.xlsx');
     }
     public function export2(){
-//        return Excel::download(new TodaBD, 'users.xlsx');
+    //    return Excel::download(new TodaBD, 'users.xlsx');
         return (new TBD(2020))->download('TODA_LA_BD.xlsx');
     }
 

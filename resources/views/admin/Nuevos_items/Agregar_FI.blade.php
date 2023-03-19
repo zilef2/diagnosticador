@@ -11,8 +11,11 @@
         <label for="FCE">Digite el numero de Factores que tendra dicho sector economico</label>
         <input type="number" name="num_FCE" placeholder="" class="form-control mb-2 col-md-3" required/>
 
-        <button class="btn btn-success btn-block" type="submit">Siguiente</button>
+        <div class="d-flex justify-content-center">
+            <a type="button" href="{{ route('home') }}" class="btn btn-secondary mx-2 shadow-lg hover:shadow-xl">Ir al inicio</a>
+            <button type="submit" class="btn btn-primary mx-2 shadow-lg hover:shadow-xl">Siguiente</button>
+        </div>
     </form>
-    <a class="btn btn-dark btn-block" href="{{ route('home') }}">Volver</a>
+    {{-- <a class="btn btn-dark btn-block" href="{{ route('home') }}">Volver</a> --}}
 </div></div></div>
 @endsection

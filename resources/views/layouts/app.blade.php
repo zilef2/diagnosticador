@@ -17,6 +17,12 @@
     <link href="/fontawesome/css/all.css" rel="stylesheet">
 
     @yield('styles')
+
+    <style>
+        .alert {
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -59,31 +65,6 @@
     @yield('head_scripts')
 
     @livewireScripts
-
-    <script>
-        let inputElements = document.getElementsByName('FI_peso');
-        let resultado = document.getElementById('resultado');
-
-        console.log("🚀🧈 -----------------------------------------------------🚀🧈");
-        console.log("🚀🧈 debuging inputElements:", inputElements);
-        console.log("🚀🧈 -----------------------------------------------------🚀🧈");
-        // if(inputElements.length != 0) {
-            inputElements.forEach(element => {
-                element.addEventListener('click', ()=> {
-                    var total = 0;
-                        console.log("element:", element);
-                        inputElements.forEach(sumando => {
-                            if(!isNaN(sumando.value)) total += parseFloat(sumando.value);
-                        });
-                        resultado.textContent = total;
-                    })
-               
-            });
-            resultado.value = 'no hay valores';
-        // }
-    </script>
-
-
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>

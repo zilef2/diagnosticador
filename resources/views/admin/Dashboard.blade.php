@@ -1,7 +1,17 @@
 <div class="container">
     <!-- Jumbotron Header -->
     <h2 class="display-4">{{config('app.name', 'Laravel')}}</h2>
-    <h5 class="display-6">Phd Jorge Anibal Restrepo Morales</h5>
+
+    @if (isset($message))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Operacion correcta:</strong> {{ $message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          
+    @endif
+    {{-- <h5 class="display-6">Phd Jorge Anibal Restrepo Morales</h5> --}}
 
     <div class="row text-center">
 

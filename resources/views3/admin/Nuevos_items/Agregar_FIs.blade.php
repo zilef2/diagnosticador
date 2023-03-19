@@ -17,5 +17,4 @@
     </form>
     <a class="btn btn-dark btn-block" href="{{ route('home') }}">Volver</a>
     </div></div></div>
-    fis1
 @endsection

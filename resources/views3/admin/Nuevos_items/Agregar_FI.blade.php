@@ -14,11 +14,6 @@
         <button class="btn btn-success btn-block" type="submit">Siguiente</button>
     </form>
     <a class="btn btn-dark btn-block" href="{{ route('home') }}">Volver</a>
-    <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Botón 1
-      </button>
-      <button class="btn bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-        Botón 2
-      </button>
+    
 </div></div></div>
 @endsection

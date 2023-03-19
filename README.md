@@ -1,7 +1,6 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
@@ -40,6 +39,20 @@ resources\views\home.blade.php
 ```
 
 Luego dirigirse al archivo .env y configurar la coneccion a la Base de datos
+
+
+
+# Front-end
+    el mix de laravel es el encargado de los estilos y demas.
+
+- Para ambiente local y construccion de codigo:
+```bash
+npm run dev
+```
+- Para ambiente de producción
+```bash
+npm run prod
+```
 
 ## Documentacion de laravel
 
