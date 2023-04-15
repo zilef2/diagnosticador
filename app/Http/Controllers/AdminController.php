@@ -43,16 +43,24 @@ class AdminController extends Controller{
         ]);
     }
 
-    public function Agregar_items(){return view('/admin.Nuevos_items.Agregar_FI');}
+    public function Agregar_items(){
+        $sectores = Sector_economico::All();
+        // dd($sectores);
+        return view('/admin.Nuevos_items.Agregar_FI')->with([
+            'sectores' => $sectores
+        ]);
+    }
 
     public function Agregar_item2(Request $request){
+        // $sectores = Sector_economico::Where('nombre',$request->SE)->count();
+
         session(['SE' => $request->SE]);
         session(['num_FCE' => $request->num_FCE]);
 
         return view('/admin.Nuevos_items.Agregar_FIs')->with([
             'SE'=>$request->SE,
             'num_FCE'=>$request->num_FCE,
-            ]);
+        ]);
     }
 
     public function Agregar_item3(Request $request){
@@ -138,6 +146,7 @@ class AdminController extends Controller{
         }
     }
 
+    //paso final = Agregar_item5
     public function Agregar_preguntaf(Validacion_pesos $request){
         $num_FIs=session('num_FI');
         $SE=session('SE');
@@ -153,11 +162,10 @@ class AdminController extends Controller{
         $contador_preg=0; //el vector nombre[] tiene un rango mayor al de $i, por eso tiene q ser un contador independiente
         $contador_fi=0; //mismo caso para vector de los FI
         $valorescien=[];
-
-        //    valores del request
         $nombresin=$request->nombre;
         $pesosin=$request->peso;
-        //(1)primero validamos
+
+        //(1) validamos
         for ($k = 0; $k < ($num_FCE); $k++) {
             for ($j = 0; $j < $num_FI[$k]; $j++) {
                 $valorescien[]=0;
@@ -173,7 +181,6 @@ class AdminController extends Controller{
                 $contador_fi++;
             }
         }
-        // dd($valorescien);
         $val2=true;
         
         //Con un solo valor que sea distinto de cien, no se ingresan datos
@@ -187,7 +194,7 @@ class AdminController extends Controller{
         $contador_preg=0;
         $contador_fi=0;
 
-        //(1)luego insertamos en la DB
+        //(2)luego insertamos en la DB
         if ($val2){
 
             $sectorE = Sector_economico::create(['nombre' => $SE]);
@@ -236,9 +243,9 @@ class AdminController extends Controller{
     public function Listar_preguntas(){return view('/admin.listar.Listar_preguntas');}
 
     public function export(){
-        Excel::store(new CalificacionesExport, 'users.xlsx','public');
+        Excel::store(new CalificacionesExport(), 'users.xlsx','public');
     //    Excel::store(new CalificacionesExport, 'users.csv','public');
-        return Excel::download(new CalificacionesExport, 'Reporte.xlsx');
+        return Excel::download(new CalificacionesExport(), 'Reporte.xlsx');
     }
     public function export2(){
     //    return Excel::download(new TodaBD, 'users.xlsx');

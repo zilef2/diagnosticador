@@ -1,10 +1,11 @@
 <?php
 
-use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect('/home');
 });
 
 Auth::routes();
@@ -13,7 +14,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix'=>"encuestado"],function () {
-    //
     Route::put('/respuesta', 'HomeController@respuesta')->name('respuestaf');
 });
 

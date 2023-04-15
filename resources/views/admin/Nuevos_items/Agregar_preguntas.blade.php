@@ -26,10 +26,12 @@
                         <form  method="POST" action="{{ route('Agregar_preguntaf') }}">
                             @method('PUT')
                             @csrf
-                            <br><h5 class="alert alert-info">Por favor, Digite las variables de manera clara y concisa</h5>
-{{--                            @dd($num_FI,$num_preguntas)--}}
+                            <br>
+                            <h5 class="alert alert-info">
+                                Por favor, Digite las variables de manera clara y concisa
+                            </h5>
 
-                        @for($k=0;$k<($num_FCE);$k++)
+                            @for($k=0;$k<($num_FCE);$k++)
                                 <h2>{{$FCE[$k]}}</h2>
                                 @for($j=0;$j<$num_FI[$k];$j++)
                                     <h4><b>{{$FI_nombre[$contadorFI]}}</b></h4>

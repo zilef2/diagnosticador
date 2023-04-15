@@ -1,23 +1,30 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container"><div class="row justify-content-center"><div class="col-lg-8">
-    <form action="{{ route('Agregar_item3')}}" method="POST">
-    @method('PUT') @csrf
-        <h3>Factores Claves</h3>
-        <input type="hidden" name="SE" value="{{$SE}}">
-        <input type="hidden" name="num_FCE" value="{{$num_FCE}}">
-        @for($i=0;$i<$num_FCE;$i++)
-            <label for="FCE">Digite el nuevo Factor #{{$i+1}}</label>
-            <input type="text" name="FCE[]" placeholder="nuevo FCE" class="form-control mb-2 col-md-8" required/>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <form action="{{ route('Agregar_item3') }}" method="POST">
+                    @method('PUT') @csrf
+                    <h3>Factores Claves</h3>
+                    <input type="hidden" name="SE" value="{{ $SE }}">
+                    <input type="hidden" name="num_FCE" value="{{ $num_FCE }}">
+                    @for ($i = 0; $i < $num_FCE; $i++)
+                        <label for="FCE">Digite el nuevo Factor #{{ $i + 1 }}</label>
+                        <input type="text" name="FCE[]" placeholder="nuevo FCE" class="form-control mb-2 col-md-8"
+                            required />
 
-            <label for="FCE">Digite el numero de Sub-Factores que tendrá dicho Factor</label>
-            <input type="number" name="num_FI[]" placeholder="#" max=40 class="form-control mb-2 col-md-2" required/>
-        @endfor
-        <div class="d-flex justify-content-center">
-            <a type="button" href="{{ route('home') }}" class="btn btn-secondary mx-2 shadow-lg hover:shadow-xl">Ir al inicio</a>
-            <button type="submit" class="btn btn-primary mx-2 shadow-lg hover:shadow-xl">Siguiente</button>
+                        <label for="FCE">Digite el numero de Sub-Factores que tendrá dicho Factor</label>
+                        <input type="number" name="num_FI[]" placeholder="#" max=40 class="form-control mb-2 col-md-2"
+                            required />
+                    @endfor
+                    <div class="d-flex justify-content-center">
+                        <a type="button" href="{{ route('home') }}"
+                            class="btn btn-secondary mx-2 shadow-lg hover:shadow-xl">Ir aaaaaaaaaaaaal inicio</a>
+                        <button type="submit" class="btn btn-primary mx-2 shadow-lg hover:shadow-xl">Siguiente</button>
+                    </div>
+                </form>
+                {{-- <a class="btn btn-dark btn-block" href="{{ route('home') }}">Volver</a> --}}
+            </div>
         </div>
-    </form>
-    {{-- <a class="btn btn-dark btn-block" href="{{ route('home') }}">Volver</a> --}}
-    </div></div></div>
+    </div>
 @endsection

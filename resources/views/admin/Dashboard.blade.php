@@ -1,15 +1,14 @@
 <div class="container">
     <!-- Jumbotron Header -->
-    <h2 class="display-4">{{config('app.name', 'Laravel')}}</h2>
+    <h2 class="display-4">{{ config('app.name', 'Laravel') }}</h2>
 
     @if (isset($message))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Operacion correcta:</strong> {{ $message }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">&times;</span>
             </button>
-          </div>
-          
+        </div>
     @endif
     {{-- <h5 class="display-6">Phd Jorge Anibal Restrepo Morales</h5> --}}
 
@@ -23,7 +22,8 @@
                     <p class="card-text">Genera una tabla con los promedios y demas factores de interes</p>
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-primary btn-lg" href="{{ route('reporte2', auth::User()->id) }}"> {{ __("Reporte General") }} </a>
+                    <a class="btn btn-primary btn-lg" href="{{ route('reporte2', auth::User()->id) }}">
+                        {{ __('Reporte General') }} </a>
                 </div>
             </div>
         </div>
@@ -32,7 +32,8 @@
                 <img class="card-img-top" height="200px" src="{{ url('/dash/preguntas.jpeg') }}" alt="">
                 <div class="card-body">
                     <h4 class="card-title">Ver Formulario</h4>
-                    <p class="card-text">Aqui encontrara todas las variables que contiene el formulario de los clientes</p>
+                    <p class="card-text">Aqui encontrara todas las variables que contiene el formulario de los clientes
+                    </p>
                 </div>
                 <div class="card-footer">
                     <a href="{{ route('Listar_preguntas') }}" class="btn btn-primary">Ver formulario</a>
@@ -62,21 +63,35 @@
                     <p class="card-text">Descarga la base de datos tal cual y como esta a la fecha</p>
                 </div>
                 <div class="card-footer">
-{{--                    <a href="{{ route('export1') }}" class="btn btn-primary" disabled="disabled">Descargar Reporte</a>--}}
-{{--                    <hr>--}}
-                    <a href= "{{ route('export2') }}" class="btn btn-primary">Descargar Base de Datos</a>
-{{--                    <hr>--}}
-
+                    {{-- <a href="{{ route('export1') }}" class="btn btn-primary" disabled="disabled">Descargar Reporte</a> <hr> --}}
+                    <a href="{{ route('export2') }}" class="btn btn-primary">Descargar Base de Datos</a>
                 </div>
             </div>
         </div>
+    </div>
 
-
-
+    <div class="container mb-5">
+        <h2>Sectores economicos existentes</h2>
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Visualizar
+            Sectores</button>
+        <div id="demo" class="collapse">
+            <ul class="mt-4 divide-y divide-gray-200">
+                <p class="lead"><strong>Sectores economicos existentes</strong></p>
+                @foreach ($sectores as $sector)
+                    <li class="">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900">{{ $sector->nombre }}</p>
+                            </div>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
     </div>
 </div>
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Diagnosticador Empresarial 2020</p>
+        <p class="m-0 text-center text-white">Copyright &copy; Diagnosticador Empresarial 2023</p>
     </div>
 </footer>

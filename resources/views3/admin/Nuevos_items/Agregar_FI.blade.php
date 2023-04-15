@@ -5,13 +5,13 @@
     @method('PUT') @csrf
         <h3>Datos del nuevo formulario</h3>
 
-        <label for="SE">Digite el nuevo Sector Economico</label>
+        <label for="SE">Digite el nuevo Sector Economico1</label>
         <input type="text" name="SE" placeholder="nuevo Sector Economico" class="form-control mb-2" required/>
 
         <label for="FCE">Digite el numero de Factores Clave de Exito que tendra dicho sector economico</label>
         <input type="number" name="num_FCE" placeholder="" class="form-control mb-2 col-md-3" required/>
 
-        <button class="btn btn-success btn-block" type="submit">Siguiente</button>
+        <button class="btn btn-success btn-block" type="submit">Siguiente aaa</button>
     </form>
     <a class="btn btn-dark btn-block" href="{{ route('home') }}">Volver</a>
     

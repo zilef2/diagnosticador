@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\FactorClaveExito;
 use App\FactorInterno;
 use App\Preguntas;
+use App\Sector_economico;
 use Illuminate\Http\Request;
 //use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
@@ -65,12 +66,14 @@ class HomeController extends Controller
             }
         }
 
+        $sectores = Sector_economico::All();
+        
         return view('home')->with('users', $users)
             ->with('preguntas', $preguntas)
             ->with('FCE', $FCE)
             ->with('FI', $FI)
+            ->with('sectores', $sectores)
             ->with('saludo', $saludo);
-
     }
 
     public function respuesta(Request $request){

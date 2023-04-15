@@ -32,6 +32,11 @@ php artisan key:generate
 php artisan serve
 ```
 
+- se recomienda la primera vez que se ponga en marcha correr el siguiente comando
+```bash
+php artisan optimize:clear
+```
+
 La vista principal es la que se encuentra en 
 
 ```bash

@@ -4,26 +4,36 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             @if(Auth::user()->is_admin>0)
+                @if (session('message'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('message') }}
+                    </div>
+                @endif
                 @include('admin.Dashboard')
             @else
 
-            <div class="card">
-                <div class="card-header">{{ __('MATRIZ EVALUACIÓN DEL FACTOR INTERNO-FUNCIÓN DE PERTENENCIA') }}</div>
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                <div class="card">
+                    <div class="card-header">{{ __('MATRIZ EVALUACIÓN DEL FACTOR INTERNO-FUNCIÓN DE PERTENENCIA') }}</div>
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        @if (session('message'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('message') }}
+                            </div>
+                        @endif
 
-                @if(Auth::user()->activo==0)
-                    @include('encuestado.encuesta')
-                @else
-                    @include('encuestado.yarespondio')
-                @endif
+                        @if(Auth::user()->activo==0)
+                            @include('encuestado.encuesta')
+                        @else
+                            @include('encuestado.yarespondio')
+                        @endif
+                    </div>
                 </div>
-            </div>
-        @endif
+            @endif
         </div>
     </div>
 </div>
