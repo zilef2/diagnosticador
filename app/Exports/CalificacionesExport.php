@@ -4,12 +4,6 @@ namespace App\Exports;
 //namespace App\Http\Livewire;
 
 use App\Exports\Exports\ReportePorHoja;
-use App\FactorInterno;
-use App\Preguntas;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\DB;
-use Livewire\WithPagination;
-use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 

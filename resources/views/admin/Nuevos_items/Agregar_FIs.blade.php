@@ -19,7 +19,7 @@
                     @endfor
                     <div class="d-flex justify-content-center">
                         <a type="button" href="{{ route('home') }}"
-                            class="btn btn-secondary mx-2 shadow-lg hover:shadow-xl">Ir aaaaaaaaaaaaal inicio</a>
+                            class="btn btn-secondary mx-2 shadow-lg hover:shadow-xl">Ir al inicio</a>
                         <button type="submit" class="btn btn-primary mx-2 shadow-lg hover:shadow-xl">Siguiente</button>
                     </div>
                 </form>

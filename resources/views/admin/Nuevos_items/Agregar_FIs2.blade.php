@@ -6,6 +6,7 @@
         @if (isset($message2))
             <div class="alert alert-danger">
                 <li>{{$message2}}</li>
+                <li>la suma actualmente es: <b>{{$debe_ser_cien}}</b></li>
             </div>
         @endif
 

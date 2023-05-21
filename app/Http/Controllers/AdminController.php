@@ -107,19 +107,19 @@ class AdminController extends Controller{
         for ($k = 0; $k < ($num_FCE); $k++){
             $val[$k]=0;
         }
-        $debe_ser_cien=array_sum($FI_peso);
+        $debe_ser_cien = array_sum($FI_peso);
 
         //no puede haber pesos de 100
         $estaMalo = false;
         if(count($FI_peso) > 1){
             foreach ($FI_peso as $key => $value) {
-                if($value > 100)
+                if($value > 101)
                     $estaMalo=true;
             }
         }
             
 
-        if ($debe_ser_cien == 100) {
+        if ($debe_ser_cien > 99.8 && $debe_ser_cien < 100.2) {
             if ($estaMalo) {
                 return view('/admin.Nuevos_items.Agregar_FIs2')->with([
                     'FCE'=>$FCE,
@@ -141,6 +141,7 @@ class AdminController extends Controller{
             return view('/admin.Nuevos_items.Agregar_FIs2')->with([
                 'FCE'=>$FCE,
                 'num_FI'=>$num_FIs,
+                'validar'=>$debe_ser_cien,
                 'message2'=>"Los pesos de las Factores Internos deben sumar 100"
             ]);
         }
@@ -242,11 +243,11 @@ class AdminController extends Controller{
 
     public function Listar_preguntas(){return view('/admin.listar.Listar_preguntas');}
 
-    public function export(){
-        Excel::store(new CalificacionesExport(), 'users.xlsx','public');
-    //    Excel::store(new CalificacionesExport, 'users.csv','public');
-        return Excel::download(new CalificacionesExport(), 'Reporte.xlsx');
-    }
+    // public function export(){
+    //     Excel::store(new CalificacionesExport(), 'users.xlsx','public');
+    //     return Excel::download(new CalificacionesExport(), 'Reporte.xlsx');
+    // }
+
     public function export2(){
     //    return Excel::download(new TodaBD, 'users.xlsx');
         return (new TBD(2020))->download('TODA_LA_BD.xlsx');
